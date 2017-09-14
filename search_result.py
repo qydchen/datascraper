@@ -22,6 +22,14 @@ print smart_tv_rating
 print smart_tv_review
 print smart_tv_title
 
+# li = soup.find('li', {'class': 'text'})
+# children = li.findChildren()
+# for child in children:
+#     print child
+
+# soup.find("li", { "class" : "test" },recursive=False)
+
+
 # 4.7
 # 207
 # Samsung - 43" Class (42.5" Diag.) - LED - 2160p - Smart - 4K Ultra HD TV
