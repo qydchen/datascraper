@@ -1,26 +1,32 @@
 import urllib2
 from bs4 import BeautifulSoup
 
-# example
+# example:
 # quote_page = 'http://www.bloomberg.com/quote/SPX:IND'
 # page = urllib2.urlopen(quote_page)
 # soup = BeautifulSoup(page, 'html.parser')
 # name_box = soup.find('h1', attrs={'class': 'name'})
 # name = name_box.text.strip() # strip() is used to remove starting and trailing
 # print name
+
 rating = 'data-average-rating'
 review = 'data-review-count'
 title = 'data-title'
 
+
 smart_tv = 'https://www.bestbuy.com/site/searchpage.jsp?st=smart+tv&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=category_facet%3DSAAS~All+Flat-Panel+TVs~abcat0101001&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys'
 smart_tv_page = urllib2.urlopen(smart_tv)
 smart_tv_scrape = BeautifulSoup(smart_tv_page, 'html.parser')
-smart_tv_rating = smart_tv_scrape.find('div', attrs={'class': 'list-item'})[rating]
-smart_tv_review = smart_tv_scrape.find('div', attrs={'class': 'list-item'})[review]
-smart_tv_title = smart_tv_scrape.find('div', attrs={'class': 'list-item'})[title]
-print smart_tv_rating
-print smart_tv_review
-print smart_tv_title
+smart_tv_children = smart_tv_scrape.findChildren()
+# smart_tv_list = smart_tv_scrape.find('div', attrs={'class': 'list-items'})
+print 'smart tv search'
+for child in smart_tv_children:
+    smart_tv_rating = child.find('div', attrs={'name': 'data-average-rating'})
+    smart_tv_review = child.find('div', attrs={'name': 'data-review-count'})
+    smart_tv_title = child.find('div', attrs={'name': 'data-title'})
+    print smart_tv_rating
+    print smart_tv_review
+    print smart_tv_title
 
 # li = soup.find('li', {'class': 'text'})
 # children = li.findChildren()
@@ -29,21 +35,21 @@ print smart_tv_title
 
 # soup.find("li", { "class" : "test" },recursive=False)
 
-
 # 4.7
 # 207
 # Samsung - 43" Class (42.5" Diag.) - LED - 2160p - Smart - 4K Ultra HD TV
 
-curved_smart_tv = 'https://www.bestbuy.com/site/searchpage.jsp?st=curved+smart+tv&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys'
-page = urllib2.urlopen(curved_smart_tv)
-curved_smart_tv_page = urllib2.urlopen(curved_smart_tv)
-curved_smart_tv_scrape = BeautifulSoup(curved_smart_tv_page, 'html.parser')
-curved_smart_tv_rating = curved_smart_tv_scrape.find('div', attrs={'class': 'list-item'})[rating]
-curved_smart_tv_review = curved_smart_tv_scrape.find('div', attrs={'class': 'list-item'})[review]
-curved_smart_tv_title = curved_smart_tv_scrape.find('div', attrs={'class': 'list-item'})[title]
-print curved_smart_tv_rating
-print curved_smart_tv_review
-print curved_smart_tv_title
+# curved_smart_tv = 'https://www.bestbuy.com/site/searchpage.jsp?st=curved+smart+tv&_dyncharset=UTF-8&id=pcat17071&type=page&sc=Global&cp=1&nrp=&sp=&qp=&list=n&af=true&iht=y&usc=All+Categories&ks=960&keys=keys'
+# page = urllib2.urlopen(curved_smart_tv)
+# curved_smart_tv_page = urllib2.urlopen(curved_smart_tv)
+# curved_smart_tv_scrape = BeautifulSoup(curved_smart_tv_page, 'html.parser')
+# curved_smart_tv_rating = curved_smart_tv_scrape.find('div', attrs={'class': 'list-item'})[rating]
+# curved_smart_tv_review = curved_smart_tv_scrape.find('div', attrs={'class': 'list-item'})[review]
+# curved_smart_tv_title = curved_smart_tv_scrape.find('div', attrs={'class': 'list-item'})[title]
+# print 'curved smart tv search'
+# print curved_smart_tv_rating
+# print curved_smart_tv_review
+# print curved_smart_tv_title
 
 # 4.7
 # 212
