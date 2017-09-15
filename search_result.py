@@ -18,7 +18,6 @@ smart_tv = 'https://www.bestbuy.com/site/searchpage.jsp?st=smart+tv&_dyncharset=
 smart_tv_page = urllib2.urlopen(smart_tv)
 smart_tv_scrape = BeautifulSoup(smart_tv_page, 'html.parser')
 smart_tv_children = smart_tv_scrape.findChildren()
-# smart_tv_list = smart_tv_scrape.find('div', attrs={'class': 'list-items'})
 print 'smart tv search'
 for child in smart_tv_children:
     smart_tv_rating = child.find('div', attrs={'name': 'data-average-rating'})
