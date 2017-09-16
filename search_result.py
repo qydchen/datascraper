@@ -23,16 +23,19 @@ class SearchScrape:
         review = 'data-review-count'
         title = 'data-title'
         scrape = BeautifulSoup(urllib2.urlopen(url), 'html.parser')
+        file_name = datetime.today().strftime("%m%d%y") # filenames will represent the day it was scraped
         list_items = scrape.find('div', attrs={'class': 'list-items'})
-        file_name = datetime.today().strftime("%m%d%y")
-        if not os.path.exists(self.name):
-            os.makedirs(self.name)
-        with open('./{0}/{1}'.format(self.name, file_name), 'a') as csv_file:
+
+        if not os.path.exists('data'):
+            os.makedirs('data')
+        with open('./data/{0}'.format(file_name), 'a') as csv_file:
             writer = csv.writer(csv_file)
-            for child in list_items.children:
-                writer.writerow([parse_title(child[title]), child[rating], child[review]])
+            for (idx, child) in enumerate(list_items.children):
+                writer.writerow([idx + 1, self.name, parse_title(child[title]), child[rating], child[review],])
+
 
 import_smart_tv = SearchScrape(smart_tv, 'smart_tv')
 import_smart_tv.scrape()
+
 import_curved_smart_tv = SearchScrape(curved_smart_tv, 'curved_smart_tv')
 import_curved_smart_tv.scrape()
