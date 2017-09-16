@@ -46,8 +46,8 @@ class ReadData:
             for item in self.reader:
                 search_term = self.reader[item][1]
                 brand = self.reader[item][2]
-                if (search_term == search_param):
-                    if ((brand not in brands)):
+                if search_term == search_param:
+                    if brand not in brands:
                         brands[brand] = 1.0
                         counter += 1.0
                     else:
