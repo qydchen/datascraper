@@ -80,8 +80,7 @@ class ReadData:
     def make_percentage(self, brands_obj, counter):
         search_result = {}
         for brand in brands_obj:
-            percent = "{0:.0f}%".format(brands_obj[brand]/counter * 100)
-            search_result[brand] = percent
+            search_result[brand] = "{0:.0f}%".format(brands_obj[brand]/counter * 100)
         return search_result
 
     # parses the date into a file name
