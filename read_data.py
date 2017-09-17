@@ -4,11 +4,11 @@ from datetime import timedelta
 
 class ReadData:
     def __init__(self, start_file='091417', end_file=datetime.today().strftime("%m%d%y")):
-        # will by default run from the first day this program started gathering data to today
+        # will by default run ALL csv files from the first day this program started gathering data to today
         self.start_file = start_file
         self.end_file = end_file
-        self.reader = {}
-        self.results = {'brand_ownership': {}} # memoize results here
+        self.data = {}
+        self.results = {} # memoize results here
         self.id_count = 0 # used to implement id across multiple files and counter for all rows
         self.init_file_read()
 
@@ -27,25 +27,25 @@ class ReadData:
         with open('./data/{0}'.format(filename)) as csvfile:
             read = csv.reader(csvfile, delimiter=',')
             for row in read:
-                self.reader[self.id_count] = row
+                self.data[self.id_count] = row
                 self.id_count += 1
 
     def view(self):
-        print self.reader
+        print self.data
 
     def count(self):
         print self.id_count
 
     def brand_ownership(self, search_param): # for question 1
-        if search_param in self.results['brand_ownership']:
-            print self.results['brand_ownership'][search_param]
+        search_ownership = self.results['brand_ownership'] = {}
+        if search_param in search_ownership:
+            print search_ownership[search_param]
         else:
             brands = {}
-            search_result = {}
             counter = 0.0
-            for item in self.reader:
-                search_term = self.reader[item][1]
-                brand = self.reader[item][2]
+            for item in self.data:
+                search_term = self.data[item][1]
+                brand = self.data[item][2]
                 if search_term == search_param:
                     if brand not in brands:
                         brands[brand] = 1.0
@@ -53,11 +53,36 @@ class ReadData:
                     else:
                         brands[brand] += 1.0
                         counter += 1.0
-            for brand in brands:
-                percent = "{0:.0f}%".format(brands[brand]/counter * 100)
-                search_result[brand] = percent
-            self.results['brand_ownership'][search_param] = search_result
-            print self.results['brand_ownership'][search_param]
+            search_ownership[search_param] = self.make_percentage(brands, counter)
+            print search_ownership[search_param]
+
+    def top_brands(self, search_param): # for question 2: what % of the top 3 search results are owned by each brand
+        search_top_brands = self.results['top_brands'] = {}
+        if search_param in search_top_brands:
+            print search_top_brands[search_param]
+        else:
+            top_brands = {}
+            counter = 0.0
+            for item in self.data:
+                rank = int(self.data[item][0])
+                search_term = self.data[item][1]
+                brand = self.data[item][2]
+                if (search_term == search_param) & (rank < 4):
+                    if (brand not in top_brands):
+                        top_brands[brand] = 1.0
+                        counter += 1.0
+                    else:
+                        top_brands[brand] += 1.0
+                        counter += 1.0
+            search_top_brands[search_param] = self.make_percentage(top_brands, counter)
+            print search_top_brands[search_param]
+
+    def make_percentage(self, brands_obj, counter):
+        search_result = {}
+        for brand in brands_obj:
+            percent = "{0:.0f}%".format(brands_obj[brand]/counter * 100)
+            search_result[brand] = percent
+        return search_result
 
     # parses the date into a file name
     def fetch_file(self, date, incre):
@@ -71,17 +96,26 @@ class ReadData:
         d2 = datetime.strptime(d2, '%m%d%y')
         return abs((d2 - d1).days)
 
-three_days = ReadData('091417','091617')
-three_days.brand_ownership('smart_tv')
-three_days.brand_ownership('curved_smart_tv')
-three_days.view()
-three_days.count()
+two_days = ReadData('091417','091517')
+two_days.brand_ownership('smart_tv')
+two_days.top_brands('smart_tv')
+# two_days.brand_ownership('curved_smart_tv')
+# two_days.view()
+# two_days.count()
 
 one_day = ReadData('091617', None)
-three_days.brand_ownership('smart_tv')
-one_day.brand_ownership('curved_smart_tv')
-one_day.view()
-one_day.count()
+one_day.brand_ownership('smart_tv')
+one_day.top_brands('smart_tv')
+# one_day.brand_ownership('curved_smart_tv')
+# one_day.view()
+# one_day.count()
+
+all_day = ReadData()
+# all_day.view()
+all_day.brand_ownership('smart_tv')
+# all_day.brand_ownership('curved_smart_tv')
+all_day.top_brands('smart_tv')
+# all_day.top_brands('curved_smart_tv')
 
 # An example view:
 # {
