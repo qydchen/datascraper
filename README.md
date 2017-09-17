@@ -12,7 +12,7 @@ In order to run the program, make sure BeautifulSoup and numpy is installed.
 + This will scrape bestbuy.com with the search terms `curved_smart_tv` and `smart_tv`, filtered by Samsung, LG, Toshiba, Sony
 + The csv file will be saved in the `data` folder
 
-The naming convention of the file will be in MMDDYY so that reading the data from a start date to end date will be simpler.
+The naming convention of the csv files will be in MMDDYY so that reading the data from a start date to end date will be simpler.
 
 #### Reading Data
 
