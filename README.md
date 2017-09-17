@@ -91,13 +91,13 @@ From 09/14/17 to 09/17/17, the % of top 3 search results for each brand for `cur
 ```python
   all_days.review_vs_ranking()
 ```
-With a correlation coefficient of -0.00057, there appears to be no correlation between # of reviews and search ranking.
+With a correlation coefficient of -0.00057, the # of reviews and search ranking appear to be independent of each other.
 
 ##### To answer question 4: Is there a correlation between the rating and search ranking?
 ```python
   all_days.rating_vs_ranking()
 ```
-With a correlation coefficient of -0.05871, there also appears to be no correlation between rating and search ranking.
+With a correlation coefficient of -0.05871, there appears to be no correlation between rating and search ranking.
 
 ##### To view all of the answers that was run and saved:
 ```python
