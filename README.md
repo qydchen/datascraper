@@ -71,6 +71,7 @@ An example data model:
 ```
 
 From 09/14/17 to 09/17/17, the % of brand ownership for `smart_tv`: LG: 32%, Samsung: 65%, Sony: 3%.
+
 From 09/14/17 to 09/17/17, the % of brand ownership for `curved_smart_tv`: Samsung: 100%.
 
 ##### To answer question 2: Given a set of competitor brands, for a given time range, for a given search terms, what percentage of the top 3 search results are owned by each brand?
@@ -83,6 +84,7 @@ From 09/14/17 to 09/17/17, the % of brand ownership for `curved_smart_tv`: Samsu
 ```
 
 From 09/14/17 to 09/17/17, the % of top 3 search results for each brand for `smart_tv`: LG: 67%, Samsung: 33%.
+
 From 09/14/17 to 09/17/17, the % of top 3 search results for each brand for `curved_smart_tv`: Samsung: 100%.
 
 ##### To answer question 3: Is there a correlation between the # of reviews and search ranking?
