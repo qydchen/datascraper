@@ -13,12 +13,6 @@ class ReadData:
         self.results = {} # memoize results here
         self.id_count = 0 # used to implement id across multiple files and counter for all rows
         self.init_file_read()
-        self.brand_ownership('smart_tv')
-        self.brand_ownership('curved_smart_tv')
-        self.top_brands('smart_tv')
-        self.top_brands('curved_smart_tv')
-        self.review_vs_ranking()
-        self.rating_vs_ranking()
 
     def init_file_read(self):
         if self.end_file is not None:
@@ -148,10 +142,10 @@ class ReadData:
 
 all_days = ReadData()
 # all_days.view_data()
-# all_days.brand_ownership('smart_tv')
-# all_days.brand_ownership('curved_smart_tv')
-# all_days.top_brands('smart_tv')
-# all_days.top_brands('curved_smart_tv')
+all_days.brand_ownership('smart_tv')
+all_days.brand_ownership('curved_smart_tv')
+all_days.top_brands('smart_tv')
+all_days.top_brands('curved_smart_tv')
 all_days.review_vs_ranking()
 all_days.rating_vs_ranking()
 # all_days.view_results()
