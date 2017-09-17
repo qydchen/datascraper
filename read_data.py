@@ -1,6 +1,8 @@
 import csv
+import numpy as np
 from datetime import datetime
 from datetime import timedelta
+from scipy.stats.stats import pearsonr
 
 class ReadData:
     def __init__(self, start_file='091417', end_file=datetime.today().strftime("%m%d%y")):
@@ -30,22 +32,25 @@ class ReadData:
                 self.data[self.id_count] = row
                 self.id_count += 1
 
-    def view(self):
+    def view_data(self):
         print self.data
 
     def count(self):
         print self.id_count
 
-    def brand_ownership(self, search_param): # for question 1
+    def view_results(self):
+        print self.results
+
+    def brand_ownership(self, search_param): # for question 1: what % of search results are owned by each brand
         search_ownership = self.results['brand_ownership'] = {}
         if search_param in search_ownership:
             print search_ownership[search_param]
         else:
             brands = {}
             counter = 0.0
-            for item in self.data:
-                search_term = self.data[item][1]
-                brand = self.data[item][2]
+            for id in self.data:
+                search_term = self.data[id][1]
+                brand = self.data[id][2]
                 if search_term == search_param:
                     if brand not in brands:
                         brands[brand] = 1.0
@@ -63,10 +68,10 @@ class ReadData:
         else:
             top_brands = {}
             counter = 0.0
-            for item in self.data:
-                rank = int(self.data[item][0])
-                search_term = self.data[item][1]
-                brand = self.data[item][2]
+            for id in self.data:
+                rank = int(self.data[id][0])
+                search_term = self.data[id][1]
+                brand = self.data[id][2]
                 if (search_term == search_param) & (rank < 4):
                     if (brand not in top_brands):
                         top_brands[brand] = 1.0
@@ -76,6 +81,32 @@ class ReadData:
                         counter += 1.0
             search_top_brands[search_param] = self.make_percentage(top_brands, counter)
             print search_top_brands[search_param]
+
+    def review_vs_ranking(self): # is there a correlation between the number of reviews and search ranking
+        if 'review_vs_ranking' in self.results:
+            print self.results['review_vs_ranking']
+        else:
+            review = self.make_vector(4)
+            ranking = self.make_vector(0)
+            correl = pearsonr(review, ranking)
+            self.results['review_vs_ranking'] = correl
+            print correl
+
+    def rating_vs_ranking(self): # is there a correlation between the rating and search ranking
+        if 'rating_vs_ranking' in self.results:
+            print self.results['rating_vs_ranking']
+        else:
+            rating = self.make_vector(3)
+            ranking = self.make_vector(0)
+            correl = pearsonr(rating, ranking)
+            self.results['rating_vs_ranking'] = correl
+            print correl
+
+    def make_vector(self, col_num):
+        vector = []
+        for id in self.data:
+            vector.append(self.data[id][col_num])
+        return np.array(vector).astype(np.float)
 
     def make_percentage(self, brands_obj, counter):
         search_result = {}
@@ -96,27 +127,30 @@ class ReadData:
         return abs((d2 - d1).days)
 
 two_days = ReadData('091417','091517')
-two_days.brand_ownership('smart_tv')
-two_days.top_brands('smart_tv')
+# two_days.brand_ownership('smart_tv')
+# two_days.top_brands('smart_tv')
 # two_days.brand_ownership('curved_smart_tv')
-# two_days.view()
+# two_days.view_data()
 # two_days.count()
 
 one_day = ReadData('091617', None)
-one_day.brand_ownership('smart_tv')
-one_day.top_brands('smart_tv')
+# one_day.brand_ownership('smart_tv')
+# one_day.top_brands('smart_tv')
 # one_day.brand_ownership('curved_smart_tv')
-# one_day.view()
+# one_day.view_data()
 # one_day.count()
 
 all_day = ReadData()
-# all_day.view()
+# all_day.view_data()
 all_day.brand_ownership('smart_tv')
-# all_day.brand_ownership('curved_smart_tv')
+all_day.brand_ownership('curved_smart_tv')
 all_day.top_brands('smart_tv')
-# all_day.top_brands('curved_smart_tv')
+all_day.top_brands('curved_smart_tv')
+all_day.review_vs_ranking()
+all_day.rating_vs_ranking()
+all_day.view_results()
 
-# An example view:
+# An example data model:
 # {
 #     0: ['1', 'smart_tv', 'LG', '4.6', '274'],
 #     1: ['2', 'smart_tv', 'Samsung', '4.6', '5899'],
