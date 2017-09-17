@@ -57,7 +57,7 @@ An example data model:
   all_day.brand_ownership('smart_tv')
   all_day.brand_ownership('curved_smart_tv')
 ```
-From 09/14/17 to 09/17/17, the % of brand ownership for `smart_tv` is: LG: 32%, Samsung: 65%, Sony: 3%.
+From 09/14/17 to 09/17/17, the % of brand ownership for `smart_tv`: LG: 32%, Samsung: 65%, Sony: 3%.
 From 09/14/17 to 09/17/17, the % of brand ownership for `curved_smart_tv`: Samsung: 100%.
 
 ##### To answer question 2: Given a set of competitor brands, for a given time range, for a given search terms, what percentage of the top 3 search results are owned by each brand?
@@ -82,7 +82,7 @@ With a correlation coefficient of -0.00057, there appears to be no correlation b
 ```
 With a correlation coefficient of -0.05871, there also appears to be no correlation between rating and search ranking.
 
-To view all of the answers that was run and saved:
+##### To view all of the answers that was run and saved:
 ```python
   all_day.view_results()
 ```
