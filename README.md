@@ -1,7 +1,7 @@
 ### L2 Back End Challenge by David Chen
 
 This back end challenge was implemented with python. The challenge required me to do two things:
-scrape data from a bestbuy.com and do some light statistical and quantitative analysis. Python
+scrape data from bestbuy.com and do some light statistical and quantitative analysis. Python
 has great libraries such as BeautifulSoup and numpy that help solve these problems.
 
 #### Scraping Data
@@ -19,19 +19,13 @@ The naming convention of the file will be in MMDDYY so that reading the data fro
 + Enter this command on the Command Prompt to read the data: `python read_data.py`
 + The results that are printed out in the Command Prompt will aggregate ALL the days
 + If you need to look at only one day, create a new ReadData in `read_data.py` passing in a start date and `None` as the end date:
-```python
-  one_day = ReadData('091617', None)
-```
+`one_day = ReadData('091617', None)`
 + If you need to look at a specified time period, create a new ReadData in `read_data.py` passing in a start date and end date:
-```python
-  two_days = ReadData('091417','091517')
-```
-+ Passing no parameters into ReadData will default to analyzing the entire `data` folder
-```python
-  all_day = ReadData()
-```
+`two_days = ReadData('091417','091517')`
++ Passing no parameters into ReadData will default to analyzing the entire `data` folder:
+`all_day = ReadData()`
 
-##### Data Model
+#### Data Model
 
 An example data model:
 
@@ -56,7 +50,7 @@ An example data model:
 
 #### Answering Questions
 
-To answer question 1: Given a set of competitor brands, for a given time range, for a given search term, what percentage of search results are owned by each brand?
+##### To answer question 1: Given a set of competitor brands, for a given time range, for a given search term, what percentage of search results are owned by each brand?
 
 + Pass in the relevant `search_term` into the `brand_ownership` class method
 ```python
@@ -66,7 +60,7 @@ To answer question 1: Given a set of competitor brands, for a given time range, 
 From 09/14/17 to 09/17/17, the % of brand ownership for `smart_tv` is: LG: 32%, Samsung: 65%, Sony: 3%.
 From 09/14/17 to 09/17/17, the % of brand ownership for `curved_smart_tv`: Samsung: 100%.
 
-To answer question 2: Given a set of competitor brands, for a given time range, for a given search terms, what percentage of the top 3 search results are owned by each brand?
+##### To answer question 2: Given a set of competitor brands, for a given time range, for a given search terms, what percentage of the top 3 search results are owned by each brand?
 
 + Pass in the relevant `search_term` into the `top_brands` class method
 ```python
@@ -76,17 +70,17 @@ To answer question 2: Given a set of competitor brands, for a given time range, 
 From 09/14/17 to 09/17/17, the % of top 3 search results for each brand for `smart_tv`: LG: 67%, Samsung: 33%.
 From 09/14/17 to 09/17/17, the % of top 3 search results for each brand for `curved_smart_tv`: Samsung: 100%.
 
-To answer question 3: Is there a correlation between the # of reviews and search ranking?
+##### To answer question 3: Is there a correlation between the # of reviews and search ranking?
 ```python
   all_day.review_vs_ranking()
 ```
 With a correlation coefficient of -0.00057, there appears to be no correlation between # of reviews and search ranking.
 
-To answer question 4: Is there a correlation between the rating and search ranking?
+##### To answer question 4: Is there a correlation between the rating and search ranking?
 ```python
   all_day.rating_vs_ranking()
 ```
-With a correlation coefficient of -0.058712857813708254, there appears to be no correlation between rating and search ranking.
+With a correlation coefficient of -0.05871, there also appears to be no correlation between rating and search ranking.
 
 To view all of the answers that was run and saved:
 ```python

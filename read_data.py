@@ -155,20 +155,3 @@ all_day.top_brands('curved_smart_tv')
 all_day.review_vs_ranking()
 all_day.rating_vs_ranking()
 all_day.view_results()
-
-# An example data model:
-# {
-#     0: ['1', 'smart_tv', 'LG', '4.6', '274'],
-#     1: ['2', 'smart_tv', 'Samsung', '4.6', '5899'],
-#     2: ['3', 'smart_tv', 'LG', '4.6', '187'],
-#     3: ['4', 'smart_tv', 'Samsung', '4.6', '3318'],
-#     4: ['5', 'smart_tv', 'Samsung', '4.7', '219'],
-#     5: ['6', 'smart_tv', 'Samsung', '4.6', '2538'],
-#     6: ['7', 'smart_tv', 'LG', '4.8', '51'],
-#     7: ['8', 'smart_tv', 'LG', '4.6', '231'],
-#     8: ['9', 'smart_tv', 'LG', '4.5', '443'],
-#     9: ['10', 'smart_tv', 'Samsung', '4.7', '360'],
-#     10: ['11', 'smart_tv', 'LG', '4.5', '130'],
-#     11: ['12', 'smart_tv', 'Samsung', '4.6', '2052'],
-#     12: ['13', 'smart_tv', 'Samsung', '4.5', '99']
-# }
