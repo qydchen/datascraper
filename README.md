@@ -1,4 +1,4 @@
-### L2 Back End Challenge by David Chen
+## L2 Back End Challenge by David Chen
 
 This back end challenge was implemented with python. The challenge required me to do two things:
 scrape data from bestbuy.com and do some light statistical and quantitative analysis. Python
