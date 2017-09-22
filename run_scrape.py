@@ -20,7 +20,7 @@ class BestBuyScrape:
         review = 'data-review-count'
         title = 'data-title'
         scrape = BeautifulSoup(urllib2.urlopen(url), 'html.parser')
-        file_name = datetime.today().strftime("%m%d%y") # filenames will represent the day it was scraped
+        file_name = datetime.today().strftime('%m%d%y') # filenames will represent the day it was scraped
         list_items = scrape.find('div', attrs={'class': 'list-items'})
 
         if not os.path.exists('data'): # if there's no data folder, make one

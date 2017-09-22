@@ -42,10 +42,13 @@ class ReadData:
         print self.results
 
     def brand_ownership(self, search_param): # for question 1: what % of search results are owned by each brand
-        search_ownership = self.results['brand_ownership'] = {}
-        if search_param in search_ownership:
-            print search_ownership[search_param]
+        if 'brand_ownership' not in self.results:
+            self.results['brand_ownership'] = {}
+
+        if search_param in self.results['brand_ownership']:
+            print self.results['brand_ownership'][search_param]
         else:
+            search_ownership = self.results['brand_ownership'] = {}
             brands = {}
             counter = 0.0
             for id in self.data:
@@ -62,10 +65,13 @@ class ReadData:
             print search_ownership[search_param]
 
     def top_brands(self, search_param): # for question 2: what % of the top 3 search results are owned by each brand
-        search_top_brands = self.results['top_brands'] = {}
-        if search_param in search_top_brands:
-            print search_top_brands[search_param]
+        if 'top_brands' not in self.results:
+            self.results['top_brands'] = {}
+
+        if search_param in self.results['top_brands']:
+            print self.results['top_brands'][search_param]
         else:
+            search_top_brands = self.results['top_brands'] = {}
             top_brands = {}
             counter = 0.0
             for id in self.data:
@@ -140,12 +146,13 @@ class ReadData:
 # one_day.view_data()
 # one_day.length()
 
-all_days = ReadData()
+all_days = ReadData('091417', '091917')
 # all_days.view_data()
 all_days.brand_ownership('smart_tv')
-all_days.brand_ownership('curved_smart_tv')
-all_days.top_brands('smart_tv')
-all_days.top_brands('curved_smart_tv')
-all_days.review_vs_ranking()
-all_days.rating_vs_ranking()
+# all_days.brand_ownership('curved_smart_tv')
+all_days.brand_ownership('smart_tv')
+# all_days.top_brands('smart_tv')
+# all_days.top_brands('curved_smart_tv')
+# all_days.review_vs_ranking()
+# all_days.rating_vs_ranking()
 # all_days.view_results()
