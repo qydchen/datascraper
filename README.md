@@ -1,6 +1,6 @@
-## L2 Back End Challenge by David Chen
+## Data Scraper by David Chen
 
-This back end challenge was implemented with python. The challenge required me to do two things:
+This data scraper was implemented with python. This repo does two things:
 scrape data from bestbuy.com and do some light statistical and quantitative analysis. Python
 has great libraries such as BeautifulSoup and numpy that help solve these problems.
 
@@ -61,7 +61,7 @@ An example data model:
 
 #### Answering Questions
 
-##### To answer question 1: Given a set of competitor brands, for a given time range, for a given search term, what percentage of search results are owned by each brand?
+##### Given a set of competitor brands, for a given time range, for a given search term, what percentage of search results are owned by each brand?
 
 + Pass in the relevant `search_term` into the `brand_ownership` class method
 
@@ -74,7 +74,7 @@ From 09/14/17 to 09/17/17, the % of brand ownership for `smart_tv`: LG: 32%, Sam
 
 From 09/14/17 to 09/17/17, the % of brand ownership for `curved_smart_tv`: Samsung: 100%.
 
-##### To answer question 2: Given a set of competitor brands, for a given time range, for a given search terms, what percentage of the top 3 search results are owned by each brand?
+##### Given a set of competitor brands, for a given time range, for a given search terms, what percentage of the top 3 search results are owned by each brand?
 
 + Pass in the relevant `search_term` into the `top_brands` class method
 
@@ -87,13 +87,13 @@ From 09/14/17 to 09/17/17, the % of top 3 search results for each brand for `sma
 
 From 09/14/17 to 09/17/17, the % of top 3 search results for each brand for `curved_smart_tv`: Samsung: 100%.
 
-##### To answer question 3: Is there a correlation between the # of reviews and search ranking?
+##### Is there a correlation between the # of reviews and search ranking?
 ```python
   all_days.review_vs_ranking()
 ```
 With a correlation coefficient of -0.00057, the # of reviews and search ranking appear to be independent of each other.
 
-##### To answer question 4: Is there a correlation between the rating and search ranking?
+##### Is there a correlation between the rating and search ranking?
 ```python
   all_days.rating_vs_ranking()
 ```
@@ -103,6 +103,3 @@ With a correlation coefficient of -0.05871, there appears to be no correlation b
 ```python
   all_days.view_results()
 ```
-
-#### Final Note
-This project was really fun. Hire me! :)
